@@ -1,20 +1,18 @@
-"""
+
 import os
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from .schemas import StoryRequest
 from .prompts import create_prompt
-from .services.openai_client import generate_story_from_prompt
-from .services.tts_elevenlabs import stream_audio
-"""
-from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
+from ..services.openai_client import generate_story_from_prompt
+from ..services.tts_elevenlabs import stream_audio
+
 app = FastAPI(title = "Masal Oluştur", version="1.0")
 
-#app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
-"""@app.get('/', response_class=HTMLResponse)
+@app.get('/', response_class=HTMLResponse)
 def root():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     static_path = os.path.join(current_dir, "../static/index.html")
@@ -49,12 +47,5 @@ async def tts_endpoint(text: str = Form(...)):
         audio_generator = stream_audio(text)
         return StreamingResponse(audio_generator, media_type="audio/mpeg")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))"""
+        raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/")
-def index():
-    return RedirectResponse("/docs", status_code=308)
-
-@app.get("/items/{item_id}")
-def get_item(item_id: str):
-    return {"item": item_id}
