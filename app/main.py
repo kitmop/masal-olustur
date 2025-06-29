@@ -19,6 +19,11 @@ def root():
     with open(static_path, "r", encoding="utf-8") as f:
         return f.read()
 
+@app.get("/read-story")
+def read_story():
+    return {"message": "Masal burada!"}
+
+
 @app.post("/generate-story")
 def generate_story(request: StoryRequest):
     prompt = create_prompt(
