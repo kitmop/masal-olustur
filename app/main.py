@@ -1,3 +1,4 @@
+"""
 import os
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse, RedirectResponse
@@ -6,8 +7,10 @@ from .schemas import StoryRequest
 from .prompts import create_prompt
 from .services.openai_client import generate_story_from_prompt
 from .services.tts_elevenlabs import stream_audio
-
-app = FastAPI(title = "Masal Oluştur")
+"""
+from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
+app = FastAPI(title = "Masal Oluştur", version="1.0")
 
 #app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
@@ -51,3 +54,7 @@ async def tts_endpoint(text: str = Form(...)):
 @app.get("/")
 def index():
     return RedirectResponse("/docs", status_code=308)
+
+@app.get("/items/{item_id}")
+def get_item(item_id: str):
+    return {"item": item_id}
