@@ -7,16 +7,13 @@ from app.prompts import create_prompt
 from services.openai_client import generate_story_from_prompt
 from services.tts_elevenlabs import stream_audio
 
-app = FastAPI(title = "Masal Oluştur", version="1.0")
+app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static", html=True), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
-@app.get('/', response_class=HTMLResponse)
-def root():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    static_path = os.path.join(current_dir, "../static/index.html")
-
-    with open(static_path, "r", encoding="utf-8") as f:
+@app.get("/", response_class=HTMLResponse)
+def index():
+    with open("static/index.html", "r", encoding="utf-8") as f:
         return f.read()
 
 @app.get("/read-story", response_model=dict)
