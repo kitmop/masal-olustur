@@ -1,12 +1,11 @@
-
 import os
 from fastapi import FastAPI, Form, HTTPException
 from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
-from .schemas import StoryRequest
-from .prompts import create_prompt
-from ..services.openai_client import generate_story_from_prompt
-from ..services.tts_elevenlabs import stream_audio
+from app.schemas import StoryRequest
+from app.prompts import create_prompt
+from services.openai_client import generate_story_from_prompt
+from services.tts_elevenlabs import stream_audio
 
 app = FastAPI(title = "Masal Oluştur", version="1.0")
 
