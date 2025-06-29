@@ -7,7 +7,7 @@ from .prompts import create_prompt
 from .services.openai_client import generate_story_from_prompt
 from .services.tts_elevenlabs import stream_audio
 
-app = FastAPI()
+app = FastAPI(title = "Masal Oluştur")
 
 #app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
