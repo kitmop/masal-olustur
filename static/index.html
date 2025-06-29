@@ -33,8 +33,11 @@
     </form>
 
     <div id="story-result" style="margin-top: 30px;"></div>
+    <div id="audio-container" style="margin-top: 20px;"></div>
 
     <script>
+        let currentStory = "";
+
         document.getElementById("story-form").addEventListener("submit", async function(e) {
             e.preventDefault();
 
@@ -50,9 +53,33 @@
             });
 
             const result = await response.json();
-            const masal = result.masal.replace(/\n/g, "<br>");
-            document.getElementById("story-result").innerHTML = `<h2>Masal</h2><p>${masal}</p>`;
+            currentStory = result.masal;
+
+            const formattedStory = currentStory.replace(/\n/g, "<br>");
+            document.getElementById("story-result").innerHTML = `<h2>Masal</h2><p>${formattedStory}</p>
+                <button id="play-audio">Sesli Dinle</button>`;
+
+            document.getElementById("play-audio").addEventListener("click", playAudio);
         });
+
+        async function playAudio() {
+            const formData = new FormData();
+            formData.append("text", currentStory);
+
+            const response = await fetch("/tts", {
+                method: "POST",
+                body: formData
+            });
+
+            const audioBlob = await response.blob();
+            const audioUrl = URL.createObjectURL(audioBlob);
+
+            document.getElementById("audio-container").innerHTML = `
+                <audio controls autoplay>
+                    <source src="${audioUrl}" type="audio/mpeg">
+                    Tarayıcınız ses çalmayı desteklemiyor.
+                </audio>`;
+        }
     </script>
 </body>
 </html>

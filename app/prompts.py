@@ -17,5 +17,5 @@ Sen yaratıcı, deneyimli ve özgün bir çocuk masalı yazarı ve pedagogsun. M
 - Uzunluk(dakika): {uzunluk}
 
 Çıktı ise yalnızca hikaye/masal ve başlığı olmalıdır. Çıktı sadece şu formatta olsun:
-Başlık ayrı bir satırda, ardından boşluk bırakıp hikaye başlasın.
+Başlık ayrı bir satırda, ardından boşluk bırakıp hikaye başlasın. Başlığı belirten başlık yazma.
 """
