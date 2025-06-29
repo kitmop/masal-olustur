@@ -1,5 +1,6 @@
+import os
 from fastapi import FastAPI, Form, HTTPException
-from fastapi.responses import StreamingResponse, HTMLResponse
+from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from .schemas import StoryRequest
 from .prompts import create_prompt
@@ -12,8 +13,8 @@ app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 @app.get('/', response_class=HTMLResponse)
 def root():
-    with open("static/index.html", "r", encoding="utf-8") as f:
-        return f.read()
+    file_path = os.path.join("static", "index.html")
+    return FileResponse(file_path)
 
 @app.post("/generate-story")
 def generate_story(request: StoryRequest):
