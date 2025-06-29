@@ -13,8 +13,11 @@ app.mount("/static", StaticFiles(directory="static", html=True), name="static")
 
 @app.get('/', response_class=HTMLResponse)
 def root():
-    file_path = os.path.join("static", "index.html")
-    return FileResponse(file_path)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    static_path = os.path.join(current_dir, "../static/index.html")
+
+    with open(static_path, "r", encoding="utf-8") as f:
+        return f.read()
 
 @app.post("/generate-story")
 def generate_story(request: StoryRequest):
