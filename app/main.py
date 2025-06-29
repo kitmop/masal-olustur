@@ -1,6 +1,6 @@
 import os
 from fastapi import FastAPI, Form, HTTPException
-from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse
+from fastapi.responses import StreamingResponse, HTMLResponse, FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from .schemas import StoryRequest
 from .prompts import create_prompt
@@ -49,5 +49,5 @@ async def tts_endpoint(text: str = Form(...)):
         raise HTTPException(status_code=500, detail=str(e))"""
 
 @app.get("/")
-def root():
-    return {"message": "Welcome."}
+def index():
+    return RedirectResponse("/docs", status_code=308)
