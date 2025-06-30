@@ -7,7 +7,13 @@ from app.prompts import create_prompt
 from services.openai_client import generate_story_from_prompt
 from services.tts_elevenlabs import stream_audio
 
+import logging
+
 app = FastAPI()
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -36,6 +42,7 @@ def generate_story(request: StoryRequest):
 @app.post("/tts/")
 async def tts_endpoint(text: str = Form(...)):
     try:
+        logger.info("End pointin içindeyiz.")
         audio_generator = stream_audio(text)
         #return StreamingResponse(audio_generator, media_type="audio/mpeg")
     except Exception as e:
