@@ -9,6 +9,7 @@ client = OpenAI(api_key=openai_api_key)
 
 def generate_story_from_prompt(prompt: str) -> str | None:
     try:
+
         response = client.chat.completions.create(
             model="gpt-4",  # veya "gpt-3.5-turbo"
             messages=[

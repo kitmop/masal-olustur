@@ -37,7 +37,7 @@ def generate_story(request: StoryRequest):
 async def tts_endpoint(text: str = Form(...)):
     try:
         audio_generator = stream_audio(text)
-        return StreamingResponse(audio_generator, media_type="audio/mpeg")
+        #return StreamingResponse(audio_generator, media_type="audio/mpeg")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

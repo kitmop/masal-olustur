@@ -71,14 +71,14 @@
                 body: formData
             });
 
-            const audioBlob = await response.blob();
-            const audioUrl = URL.createObjectURL(audioBlob);
+            //const audioBlob = await response.blob();
+            //const audioUrl = URL.createObjectURL(audioBlob);
 
-            document.getElementById("audio-container").innerHTML = `
-                <audio controls autoplay>
-                    <source src="${audioUrl}" type="audio/mpeg">
-                    Tarayıcınız ses çalmayı desteklemiyor.
-                </audio>`;
+            //document.getElementById("audio-container").innerHTML = `
+                //<audio controls autoplay>
+                    //<source src="${audioUrl}" type="audio/mpeg">
+                    //Tarayıcınız ses çalmayı desteklemiyor.
+                //</audio>`;
         }
     </script>
 </body>
