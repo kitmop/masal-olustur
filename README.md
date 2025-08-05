@@ -33,7 +33,8 @@ source venv/bin/activate  # on Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Set your OpenAI API key
-export OPENAI_API_KEY=your_key_here
+OPENAI_API_KEY=your_openai_api_key
+ELEVENLABS_API_KEY=your_elevenlabs_api_key
 
 # Run the server
 uvicorn main:app --reload
