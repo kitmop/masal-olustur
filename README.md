@@ -59,13 +59,22 @@ uvicorn main:app --reload
 
 ```
 masal-olustur/
-├── main.py             # FastAPI app and endpoints
-├── prompts.py          # Prompt templates
-├── tts.py              # ElevenLabs TTS integration
-├── schemas.py          # Pydantic models
-├── utils.py            # Helper functions
-├── requirements.txt
-└── README.md
+├── app/
+│   ├── __init__.py
+│   ├── main.py            # FastAPI app and routes
+│   ├── prompts.py         # Prompt templates
+│   ├── schemas.py         # Pydantic models
+├── services/
+│   ├── __init__.py
+│   ├── openai_client.py   # OpenAI API calls
+│   ├── tts_elevenlabs.py  # ElevenLabs TTS integration
+├── static/
+│   └── index.html         # Basic frontend (if used)
+├── .env                   # Environment variables (not committed)
+├── .gitignore
+├── Procfile               # For Railway or Heroku deployment
+├── README.md
+└── requirements.txt
 ```
 
 ## 🧠 Motivation
