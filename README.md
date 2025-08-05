@@ -78,6 +78,6 @@ This project was built to:
 
 ## 👤 Author
 
-Fatih Tuğlu  
+Fatih Mustafa Tuğlu  
 MSc Student @ TUM – Robotics & Computer Vision  
 GitHub: [kitmop](https://github.com/kitmop)
